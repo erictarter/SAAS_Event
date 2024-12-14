@@ -2,25 +2,47 @@
   <div class="flex flex-col min-h-screen">
     <header class="bg-gray-900 text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">EventHub</h1>
+        <nuxt-link to="/"><h1 class="text-2xl font-bold">EventFlow</h1></nuxt-link>
         <div class="flex items-center">
           <nav v-if="user" class="flex items-center space-x-4">
-            <nuxt-link to="/" class="hover:text-gray-400">Home</nuxt-link>
-            <nuxt-link to="/tasks" class="hover:text-gray-400">Tasks</nuxt-link>
-            <nuxt-link to="/rsvp" class="hover:text-gray-400">RSVP</nuxt-link>
-            <nuxt-link to="/polls" class="hover:text-gray-400">Polls</nuxt-link>
+            <nuxt-link to="/" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+              <i class="material-icons">home</i>
+              <span>Home</span>
+            </nuxt-link>
+            <nuxt-link to="/tasks" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+              <i class="material-icons">assignment</i>
+              <span>Tasks</span>
+            </nuxt-link>
+            <nuxt-link to="/rsvp" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+              <i class="material-icons">event</i>
+              <span>RSVP</span>
+            </nuxt-link>
+            <nuxt-link to="/polls" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+              <i class="material-icons">poll</i>
+              <span>Polls</span>
+            </nuxt-link>
           </nav>
-          <div v-if="!user" class="relative ml-4">
+          <div v-if="user" class="relative ml-4">
             <button @click="toggleDropdown" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
-              <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D" alt="Profile Icon" class="h-6 w-6 rounded-full mr-2">
-              user~name
+              <i class="material-icons mr-2">account_circle</i>
+              {{ user.email }}
+              <i class="material-icons ml-2">expand_more</i>
             </button>
             <div v-if="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg">
-              <nuxt-link to="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</nuxt-link>
-              <button @click="signOut" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">Sign Out</button>
+              <nuxt-link to="/profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 flex items-center space-x-1">
+                <i class="material-icons">account_circle</i>
+                <span>Profile</span>
+              </nuxt-link>
+              <button @click="handleSignOut" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 flex items-center space-x-1">
+                <i class="material-icons">exit_to_app</i>
+                <span>Sign Out</span>
+              </button>
             </div>
           </div>
-          <nuxt-link v-else to="/signin" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Sign In</nuxt-link>
+          <nuxt-link v-else to="/signin" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center space-x-1">
+            <i class="material-icons">login</i>
+            <span>Sign In</span>
+          </nuxt-link>
         </div>
       </div>
     </header>
@@ -36,27 +58,29 @@
 </template>
 
 <script>
-import { auth } from '~/plugins/firebase'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
     return {
-      user: null,
       dropdownOpen: false,
     }
   },
-  async mounted() {
-    auth.onAuthStateChanged(user => {
-      this.user = user
-    })
+  computed: {
+    ...mapState(['user']),
   },
   methods: {
+    ...mapActions(['signOut']),
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen
     },
-    async signOut() {
-      await auth.signOut()
-      this.$router.push('/signin')
+    async handleSignOut() {
+      try {
+        await this.signOut()
+        this.$router.push('/signin')
+      } catch (error) {
+        console.error('Error signing out:', error)
+      }
     },
   },
 }

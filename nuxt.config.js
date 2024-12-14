@@ -19,6 +19,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/tailwind.css',
+    'material-design-icons-iconfont/dist/material-design-icons.css',
   ],
 
   router: {

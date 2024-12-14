@@ -38,7 +38,7 @@
         <nuxt-link to="/signin" class="block">
           <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full">
             <h3 class="text-2xl font-bold text-teal-600">Pro</h3>
-            <p class="mt-4 text-gray-600">$10/month</p>
+            <p class="mt-4 text-gray-600">$2.99/month</p>
             <ul class="mt-4 text-gray-600 list-disc list-inside">
               <li>All Basic features</li>
               <li>Advanced RSVP management and reminders</li>
@@ -49,7 +49,7 @@
         <nuxt-link to="/signin" class="block">
           <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full">
             <h3 class="text-2xl font-bold text-pink-600">Enterprise</h3>
-            <p class="mt-4 text-gray-600">$30/month</p>
+            <p class="mt-4 text-gray-600">$4.99/month</p>
             <ul class="mt-4 text-gray-600 list-disc list-inside">
               <li>All Pro features</li>
               <li>Exportable reports</li>

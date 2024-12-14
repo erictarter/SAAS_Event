@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <component :is="!user ? 'HomeAuth' : 'HomeNonAuth'" />
+    <component :is="user ? 'HomeAuth' : 'HomeNonAuth'" />
   </div>
 </template>
 
