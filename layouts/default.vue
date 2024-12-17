@@ -46,7 +46,7 @@
           </div>
           <nuxt-link v-else to="/signin" class="ml-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 flex items-center space-x-1">
             <i class="material-icons mr-1">login</i>
-            <span>Sign In</span>
+            <strong>SIGN IN</strong>
           </nuxt-link>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default {
 }
 .loader {
   border: 8px solid #f3f3f3;
-  border-top: 8px solid rgba(13, 148, 136, 1);
+  border-top: 8px solid rgba(219, 39, 119, 1);
   border-radius: 50%;
   width: 60px;
   height: 60px;

@@ -17,7 +17,15 @@ if (!firebase.apps.length) {
 }
 
 const auth = firebase.auth()
+
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  .then(() => {
+    console.log('Firebase persistence set to LOCAL')
+  })
+  .catch((error) => {
+    console.error('Error setting Firebase persistence:', error)
+  })
+
 const db = firebase.firestore()
 
 export { auth, db }

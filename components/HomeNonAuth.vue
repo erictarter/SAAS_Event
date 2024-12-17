@@ -61,7 +61,7 @@
       </div>
   
       <div class="mt-12 text-center">
-        <nuxt-link to="/signin" class="block w-full px-6 py-3 text-white rounded bg-pink-500 shadow hover:bg-pink-600">Get Started</nuxt-link>
+        <nuxt-link to="/signin" class="block w-full px-6 py-3 text-white rounded bg-pink-500 shadow hover:bg-pink-600"><strong>GET STARTED</strong></nuxt-link>
       </div>
     </div>
   </template>

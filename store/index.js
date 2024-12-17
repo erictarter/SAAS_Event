@@ -20,6 +20,7 @@ export const actions = {
       auth.onAuthStateChanged(user => {
         commit('setUser', user)
         commit('setLoading', false)
+        console.log('User state set in nuxtServerInit:', user)
         resolve()
       }, reject)
     })
@@ -28,7 +29,9 @@ export const actions = {
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password)
       commit('setUser', user)
+      console.log('User signed in:', user)
     } catch (error) {
+      console.error('Error signing in:', error)
       throw error
     }
   },
@@ -36,7 +39,9 @@ export const actions = {
     try {
       await auth.signOut()
       commit('setUser', null)
+      console.log('User signed out')
     } catch (error) {
+      console.error('Error signing out:', error)
       throw error
     }
   },

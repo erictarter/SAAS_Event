@@ -9,11 +9,11 @@
           <i class="material-icons">remove_circle</i>
         </button>
       </div>
-      <button @click="addOption" class="mb-4 bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 flex items-center">
+      <button @click="addOption" class="mb-4 bg-teal-500 text-white font-bold uppercase px-4 py-2 rounded hover:bg-teal-600 flex items-center">
         <i class="material-icons mr-1">add_circle</i>
         Add Option
       </button>
-      <button @click="createPoll" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 flex items-center">
+      <button @click="createPoll" class="bg-pink-500 text-white px-4 py-2 font-bold uppercase rounded hover:bg-pink-600 flex items-center">
         <i class="material-icons mr-1">poll</i>
         Create Poll
       </button>

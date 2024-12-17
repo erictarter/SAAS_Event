@@ -21,8 +21,8 @@
           <span class="text-gray-500"> - Due: {{ task.dueDate }}</span>
         </div>
         <div class="flex space-x-2">
-          <button @click="editTask(task)" class="text-blue-500 hover:underline">Edit</button>
-          <button @click="deleteTask(task.id)" class="text-red-500 hover:underline">Delete</button>
+          <button @click="editTask(task)" class="text-blue-500 uppercase font-bold hover:underline">Edit</button>
+          <button @click="deleteTask(task.id)" class="text-red-500 uppercase font-bold hover:underline">Delete</button>
         </div>
       </li>
     </ul>
@@ -35,7 +35,7 @@
         <option value="">Select Category</option>
         <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
       </select>
-      <button @click="addTask" class="mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">{{ editMode ? 'Update Task' : 'Add Task' }}</button>
+      <button @click="addTask" class="mt-2 bg-indigo-500 uppercase font-bold text-white px-4 py-2 rounded hover:bg-indigo-600">{{ editMode ? 'Update Task' : 'Add Task' }}</button>
     </div>
   </div>
 </template>

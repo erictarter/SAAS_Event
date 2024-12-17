@@ -23,8 +23,8 @@
           <span class="font-bold">{{ item.name }}</span> - ${{ item.amount }} <span class="text-gray-500">({{ item.category }})</span>
         </div>
         <div class="flex space-x-2">
-          <button @click="editItem(item)" class="text-blue-500 hover:underline">Edit</button>
-          <button @click="deleteItem(item.id)" class="text-red-500 hover:underline">Delete</button>
+          <button @click="editItem(item)" class="text-blue-500 uppercase font-bold hover:underline">Edit</button>
+          <button @click="deleteItem(item.id)" class="text-red-500 uppercase font-bold hover:underline">Delete</button>
         </div>
       </li>
     </ul>
@@ -37,7 +37,7 @@
         <option value="">Select Category</option>
         <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
       </select>
-      <button @click="addItem" class="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">{{ editMode ? 'Update Item' : 'Add Item' }}</button>
+      <button @click="addItem" class="mt-2 bg-green-500 uppercase font-bold text-white px-4 py-2 rounded hover:bg-green-600">{{ editMode ? 'Update Item' : 'Add Item' }}</button>
     </div>
   </div>
 </template>

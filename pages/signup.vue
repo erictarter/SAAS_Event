@@ -4,7 +4,7 @@
       <form @submit.prevent="signUp">
         <input v-model="email" type="email" placeholder="Email" class="border p-2 rounded w-full mb-4" required />
         <input v-model="password" type="password" placeholder="Password" class="border p-2 rounded w-full mb-4" required />
-        <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 w-full">Sign Up</button>
+        <button type="submit" class="bg-indigo-500 text-white px-4 py-2 uppercase font-bold rounded hover:bg-indigo-600 w-full">Sign Up</button>
       </form>
       <p class="mt-4">Already have an account? <nuxt-link to="/signin" class="text-blue-500 hover:underline">Sign In</nuxt-link></p>
     </div>

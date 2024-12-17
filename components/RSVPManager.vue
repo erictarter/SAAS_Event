@@ -4,8 +4,8 @@
     
     <!-- Tabs for Adding and Searching RSVPs -->
     <div class="flex justify-center mb-6">
-      <button @click="activeTab = 'search'" :class="{'bg-teal-500 text-white': activeTab === 'search', 'bg-gray-200 text-gray-800': activeTab !== 'search'}" class="px-4 py-2 rounded-l-lg focus:outline-none">Search RSVPs</button>
-      <button @click="activeTab = 'add'" :class="{'bg-teal-500 text-white': activeTab === 'add', 'bg-gray-200 text-gray-800': activeTab !== 'add'}" class="px-4 py-2 rounded-r-lg focus:outline-none">Add RSVP</button>
+      <button @click="activeTab = 'search'" :class="{'bg-teal-500 text-white': activeTab === 'search', 'bg-gray-200 text-gray-800': activeTab !== 'search'}" class="px-4 py-2 rounded-l-lg uppercase font-bold focus:outline-none">Search RSVPs</button>
+      <button @click="activeTab = 'add'" :class="{'bg-teal-500 text-white': activeTab === 'add', 'bg-gray-200 text-gray-800': activeTab !== 'add'}" class="px-4 py-2 rounded-r-lg uppercase font-bold focus:outline-none">Add RSVP</button>
     </div>
 
     <div v-if="activeTab === 'search'">
@@ -36,18 +36,18 @@
             <p class="text-gray-500">{{ rsvp.notes }}</p>
           </div>
           <div class="flex space-x-2">
-            <button @click="editRSVP(rsvp)" class="text-blue-500 hover:underline">Edit</button>
-            <button @click="deleteRSVP(rsvp.id)" class="text-red-500 hover:underline">Delete</button>
-            <button @click="sendReminder(rsvp.email)" class="text-green-500 hover:underline">Send Reminder</button>
+            <button @click="editRSVP(rsvp)" class="text-blue-500 uppercase font-bold hover:underline">Edit</button>
+            <button @click="deleteRSVP(rsvp.id)" class="text-red-500 uppercase font-bold hover:underline">Delete</button>
+            <button @click="sendReminder(rsvp.email)" class="text-green-500 uppercase font-bold hover:underline">Send Reminder</button>
           </div>
         </li>
       </ul>
       
       <!-- Pagination -->
       <div class="flex justify-between items-center mt-4">
-        <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Previous</button>
+        <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-200 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Previous</button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Next</button>
+        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-200 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Next</button>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
           <option value="">Select Event</option>
           <option v-for="event in pendingEvents" :key="event.id" :value="event.id">{{ event.name }}</option>
         </select>
-        <button @click="addRSVP" class="mt-2 bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600">{{ editMode ? 'Update RSVP' : 'Add RSVP' }}</button>
+        <button @click="addRSVP" class="mt-2 bg-teal-500 text-white uppercase font-bold px-4 py-2 rounded hover:bg-teal-600">{{ editMode ? 'Update RSVP' : 'Add RSVP' }}</button>
       </div>
     </div>
   </div>
