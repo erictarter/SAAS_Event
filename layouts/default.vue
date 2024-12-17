@@ -4,20 +4,20 @@
       <div class="container mx-auto flex justify-between items-center">
         <nuxt-link to="/"><h1 class="text-2xl font-bold">EventFlow</h1></nuxt-link>
         <div class="flex items-center">
-          <nav v-if="user" class="flex items-center space-x-4">
-            <nuxt-link to="/" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+          <nav v-if="user" class="flex items-center space-x-6 text-gray-400">
+            <nuxt-link to="/" exact-active-class="text-white" class="hover:text-gray-200 flex items-center space-x-1">
               <i class="material-icons">home</i>
               <span>Home</span>
             </nuxt-link>
-            <nuxt-link to="/tasks" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+            <nuxt-link to="/tasks" exact-active-class="text-white" class="hover:text-gray-200 flex items-center space-x-1">
               <i class="material-icons">assignment</i>
               <span>Tasks</span>
             </nuxt-link>
-            <nuxt-link to="/rsvp" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+            <nuxt-link to="/rsvp" exact-active-class="text-white" class="hover:text-gray-200 flex items-center space-x-1">
               <i class="material-icons">event</i>
               <span>RSVP</span>
             </nuxt-link>
-            <nuxt-link to="/polls" exact-active-class="text-pink-300" class="hover:text-gray-400 flex items-center space-x-1">
+            <nuxt-link to="/polls" exact-active-class="text-white" class="hover:text-gray-200 flex items-center space-x-1">
               <i class="material-icons">poll</i>
               <span>Polls</span>
             </nuxt-link>
