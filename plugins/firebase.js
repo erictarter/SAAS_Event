@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -26,4 +26,4 @@ setPersistence(auth, browserLocalPersistence)
     console.error('Error setting Firebase persistence:', error)
   })
 
-export { auth, db, signInWithEmailAndPassword }
+export { auth, db, signInWithEmailAndPassword, createUserWithEmailAndPassword }
