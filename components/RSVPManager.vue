@@ -45,9 +45,9 @@
       
       <!-- Pagination -->
       <div class="flex justify-between items-center mt-4">
-        <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-200 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Previous</button>
+        <button @click="prevPage" :disabled="currentPage === 1" class="border border-gray-500 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-100">Previous</button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-200 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Next</button>
+        <button @click="nextPage" :disabled="currentPage === totalPages" class="border border-gray-500 uppercase font-bold text-gray-800 px-4 py-2 rounded hover:bg-gray-100">Next</button>
       </div>
     </div>
 

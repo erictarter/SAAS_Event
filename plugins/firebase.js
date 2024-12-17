@@ -1,6 +1,6 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
-import 'firebase/compat/firestore'
+import { initializeApp } from 'firebase/app'
+import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -12,13 +12,13 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 }
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
-}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const db = getFirestore(app)
 
-const auth = firebase.auth()
-
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+// Set persistence
+setPersistence(auth, browserLocalPersistence)
   .then(() => {
     console.log('Firebase persistence set to LOCAL')
   })
@@ -26,6 +26,4 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     console.error('Error setting Firebase persistence:', error)
   })
 
-const db = firebase.firestore()
-
-export { auth, db }
+export { auth, db, signInWithEmailAndPassword }

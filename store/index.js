@@ -1,4 +1,5 @@
 import { auth } from '~/plugins/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 export const state = () => ({
   user: null,
@@ -7,45 +8,90 @@ export const state = () => ({
 
 export const mutations = {
   setUser(state, user) {
-    state.user = user
+    // Create a new object to avoid direct mutation
+    state.user = user ? { ...user } : null
   },
   setLoading(state, loading) {
     state.loading = loading
-  },
+  }
+}
+
+export const getters = {
+  isAuthenticated: (state) => !!state.user,
+  getCurrentUser: (state) => state.user,
+  isLoading: (state) => state.loading
 }
 
 export const actions = {
-  async nuxtServerInit({ commit }) {
+  async nuxtServerInit({ commit }, { req }) {
     return new Promise((resolve, reject) => {
-      auth.onAuthStateChanged(user => {
-        commit('setUser', user)
-        commit('setLoading', false)
-        console.log('User state set in nuxtServerInit:', user)
-        resolve()
-      }, reject)
+      // Use onAuthStateChanged to handle authentication state
+      const unsubscribe = auth.onAuthStateChanged(
+        (user) => {
+          // Safely commit the user, creating a new object
+          commit('setUser', user ? { 
+            uid: user.uid, 
+            email: user.email, 
+            // Add any other properties you need
+          } : null)
+          
+          commit('setLoading', false)
+          
+          // Important: unsubscribe to prevent memory leaks
+          unsubscribe()
+          
+          resolve(user)
+        },
+        (error) => {
+          console.error('Auth state change error:', error)
+          commit('setLoading', false)
+          
+          // Important: unsubscribe to prevent memory leaks
+          unsubscribe()
+          
+          reject(error)
+        }
+      )
     })
   },
+
   async signIn({ commit }, { email, password }) {
+    commit('setLoading', true)
+
     try {
-      const { user } = await auth.signInWithEmailAndPassword(email, password)
-      commit('setUser', user)
-      console.log('User signed in:', user)
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const user = userCredential.user
+
+      // Commit a new object with specific properties
+      commit('setUser', {
+        uid: user.uid,
+        email: user.email,
+        // Add any other properties you need
+      })
+
+      commit('setLoading', false)
+      
+      return user
     } catch (error) {
+      commit('setLoading', false)
       console.error('Error signing in:', error)
       throw error
     }
   },
+
   async signOut({ commit }) {
+    commit('setLoading', true)
+
     try {
       await auth.signOut()
+      
+      // Set user to null
       commit('setUser', null)
-      console.log('User signed out')
+      commit('setLoading', false)
     } catch (error) {
+      commit('setLoading', false)
       console.error('Error signing out:', error)
       throw error
     }
-  },
-  setLoading({ commit }, loading) {
-    commit('setLoading', loading)
-  },
+  }
 }

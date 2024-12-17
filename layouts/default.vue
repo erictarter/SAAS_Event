@@ -9,7 +9,7 @@
       <div class="container mx-auto flex justify-between items-center">
         <nuxt-link to="/"><h1 class="text-2xl font-bold">EventFlow</h1></nuxt-link>
         <div class="flex items-center">
-          <nav v-if="user" class="flex items-center space-x-6 text-gray-400">
+          <nav v-if="isAuthenticated" class="flex items-center space-x-6 text-gray-400">
             <nuxt-link to="/" exact-active-class="text-white" class="hover:text-gray-200 flex items-center space-x-1">
               <i class="material-icons">home</i>
               <span>Home</span>
@@ -27,10 +27,10 @@
               <span>Polls</span>
             </nuxt-link>
           </nav>
-          <div v-if="user" class="relative ml-4">
+          <div v-if="isAuthenticated" class="relative ml-4">
             <button @click="toggleDropdown" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
               <i class="material-icons mr-2">account_circle</i>
-              {{ user.email }}
+              {{ getCurrentUser.email }}
               <i class="material-icons ml-2">expand_more</i>
             </button>
             <div v-if="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg">
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -72,10 +72,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user', 'loading']),
+    ...mapGetters(['isAuthenticated', 'getCurrentUser', 'isLoading']),
+    loading() {
+      return this.isLoading
+    }
   },
   methods: {
-    ...mapActions(['signOut', 'setLoading']),
+    ...mapMutations(['setLoading']), // Use mapMutations for setLoading
+    ...mapActions(['signOut']),
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen
     },
@@ -93,14 +97,14 @@ export default {
       this.setLoading(true)
       setTimeout(() => {
         this.setLoading(false)
-      }, 750) // Adjust the timeout duration as needed
+      }, 750)
     },
   },
   mounted() {
     this.setLoading(true)
     setTimeout(() => {
       this.setLoading(false)
-    }, 750) // Adjust the timeout duration as needed
+    }, 750)
   },
 }
 </script>
