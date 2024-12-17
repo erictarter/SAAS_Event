@@ -3,13 +3,13 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCC9qW38BiG7wlCgAEi-j3IG5q5auu39FA",
-  authDomain: "event-saas-cb32e.firebaseapp.com",
-  projectId: "event-saas-cb32e",
-  storageBucket: "event-saas-cb32e.firebasestorage.app",
-  messagingSenderId: "99764803671",
-  appId: "1:99764803671:web:52b76bd7019c5d3ed0ab12",
-  measurementId: "G-DYLM6YRZDH"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 }
 
 if (!firebase.apps.length) {

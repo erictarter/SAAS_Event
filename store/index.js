@@ -2,11 +2,15 @@ import { auth } from '~/plugins/firebase'
 
 export const state = () => ({
   user: null,
+  loading: true,
 })
 
 export const mutations = {
   setUser(state, user) {
     state.user = user
+  },
+  setLoading(state, loading) {
+    state.loading = loading
   },
 }
 
@@ -15,6 +19,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       auth.onAuthStateChanged(user => {
         commit('setUser', user)
+        commit('setLoading', false)
         resolve()
       }, reject)
     })
@@ -34,5 +39,8 @@ export const actions = {
     } catch (error) {
       throw error
     }
+  },
+  setLoading({ commit }, loading) {
+    commit('setLoading', loading)
   },
 }

@@ -1,5 +1,10 @@
 <template>
   <div class="flex flex-col min-h-screen">
+    <transition name="fade">
+      <div v-if="loading" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+        <div class="loader"></div>
+      </div>
+    </transition>
     <header class="bg-gray-900 text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
         <nuxt-link to="/"><h1 class="text-2xl font-bold">EventFlow</h1></nuxt-link>
@@ -67,10 +72,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState(['user', 'loading']),
   },
   methods: {
-    ...mapActions(['signOut']),
+    ...mapActions(['signOut', 'setLoading']),
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen
     },
@@ -83,11 +88,46 @@ export default {
       }
     },
   },
+  watch: {
+    '$route'() {
+      this.setLoading(true)
+      setTimeout(() => {
+        this.setLoading(false)
+      }, 750) // Adjust the timeout duration as needed
+    },
+  },
+  mounted() {
+    this.setLoading(true)
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 750) // Adjust the timeout duration as needed
+  },
 }
 </script>
 
 <style>
 .container {
   max-width: 1200px;
+}
+.underline {
+  text-decoration: underline;
+}
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid rgba(13, 148, 136, 1);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin .45s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
 }
 </style>
