@@ -35,7 +35,7 @@
         <option value="">Select Category</option>
         <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
       </select>
-      <button @click="addTask" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">{{ editMode ? 'Update Task' : 'Add Task' }}</button>
+      <button @click="addTask" class="mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">{{ editMode ? 'Update Task' : 'Add Task' }}</button>
     </div>
   </div>
 </template>

@@ -39,8 +39,8 @@
               </button>
             </div>
           </div>
-          <nuxt-link v-else to="/signin" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center space-x-1">
-            <i class="material-icons">login</i>
+          <nuxt-link v-else to="/signin" class="ml-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 flex items-center space-x-1">
+            <i class="material-icons mr-1">login</i>
             <span>Sign In</span>
           </nuxt-link>
         </div>
